@@ -1,0 +1,604 @@
+:root {
+  --aui-cubic-bezier-ease-out: cubic-bezier(0.23, 0.66, 0.37, 0.94);
+  --aui-box-shadow-color: rgba(0 0 0 / 0.1);
+  --aui-box-shadow-button: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+  --aui-dialog-backdrop-color: rgba(0 0 0 / 0.5);
+  --aui-color-sky-350: rgba(152 204 231 / 1);
+  --aui-dialog-min-width: 420px;
+  --aui-sidenav-divider-cut-size: 3%;
+  --aui-tab-divider-cut-size: 12.5%;
+  --aui-svg-chevron-down: url('data:image/svg+xml,%3Csvg%20data-slot=%22icon%22%20fill=%22none%22%20stroke-width=%221.5%22%20stroke=%22currentColor%22%20viewBox=%220%200%2024%2024%22%20xmlns=%22http://www.w3.org/2000/svg%22%20aria-hidden=%22true%22%3E%3Cpath%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%20d=%22m19.5%208.25-7.5%207.5-7.5-7.5%22%3E%3C/path%3E%3C/svg%3E')
+}
+
+body[data-aui-dialog-active] {
+  overflow-y: hidden !important;
+  overscroll-behavior: contain !important;
+  margin-right: 17px !important;
+}
+
+[data-aui] {
+  font-family: 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+  @apply text-slate-700;
+
+  &[data-aui-typography] {
+    h1 {
+      @apply text-2xl;
+    }
+  
+    h2 {
+      @apply text-xl;
+    }
+  
+    p {
+      @apply mb-4;
+    }
+  }
+
+  [data-aui-alert] {
+    @apply block relative;
+
+    &:not([data-aui-properties~="nopadding"]) {
+      @apply p-3;
+    }
+
+    & > [data-aui-alert-bg] {
+      --aui-box-shadow-color: rgb(212 212 212 / 0.5);
+      @apply absolute inset-0 bg-sky-100 rounded-md;
+      box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+    }
+
+    &[data-aui-properties~="skew"] > [data-aui-alert-bg] {
+      @apply -skew-x-6;
+    }
+
+    &[data-aui-alert-color="white"] > [data-aui-alert-bg] {
+      @apply bg-white;
+    }
+
+    &[data-aui-alert-color="blue"] > [data-aui-alert-bg] {
+      @apply bg-sky-300;
+    }
+
+    &[data-aui-alert-color="yellow"] > [data-aui-alert-bg] {
+      @apply bg-yellow-200;
+    }
+
+    &[data-aui-alert-color="green"] > [data-aui-alert-bg] {
+      @apply bg-green-300;
+    }
+
+    &[data-aui-alert-color="red"] > [data-aui-alert-bg] {
+      @apply bg-red-300;
+    }
+
+    & > [data-aui-alert-text] {
+      @apply relative font-semibold text-slate-700;
+    }
+
+    &[data-aui-alert-color="blue"] > [data-aui-alert-text] {
+      @apply text-blue-900;
+    }
+
+    &[data-aui-alert-color="yellow"] > [data-aui-alert-text] {
+      @apply text-yellow-900;
+    }
+
+    &[data-aui-alert-color="green"] > [data-aui-alert-text] {
+      @apply text-green-900;
+    }
+
+    &[data-aui-alert-color="red"] > [data-aui-alert-text] {
+      @apply text-red-900;
+    }
+
+    & > [data-aui-alert-progress-bar] {
+      @apply absolute bottom-0 left-0 right-0 h-1 bg-slate-400 rounded-b-md overflow-hidden;
+    }
+
+    &[data-aui-properties~="skew"] > [data-aui-alert-progress-bar] {
+      @apply -skew-x-6 -translate-x-[2px];
+    }
+
+    & > [data-aui-alert-progress-bar] > [data-aui-alert-progress-bar-inner] {
+      @apply h-1 bg-slate-600;
+    }
+
+    &[data-aui-alert-color="blue"] > [data-aui-alert-progress-bar] {
+      @apply bg-sky-500;
+    }
+
+    &[data-aui-alert-color="blue"] > [data-aui-alert-progress-bar] > [data-aui-alert-progress-bar-inner]  {
+      @apply bg-sky-700;
+    }
+
+    &[data-aui-alert-color="yellow"] > [data-aui-alert-progress-bar] {
+      @apply bg-yellow-500;
+    }
+
+    &[data-aui-alert-color="yellow"] > [data-aui-alert-progress-bar] > [data-aui-alert-progress-bar-inner]  {
+      @apply bg-yellow-700;
+    }
+
+    &[data-aui-alert-color="green"] > [data-aui-alert-progress-bar] {
+      @apply bg-green-500;
+    }
+
+    &[data-aui-alert-color="green"] > [data-aui-alert-progress-bar] > [data-aui-alert-progress-bar-inner]  {
+      @apply bg-green-700;
+    }
+
+    &[data-aui-alert-color="red"] > [data-aui-alert-progress-bar] {
+      @apply bg-red-400;
+    }
+
+    &[data-aui-alert-color="red"] > [data-aui-alert-progress-bar] > [data-aui-alert-progress-bar-inner]  {
+      @apply bg-red-600;
+    }
+  }
+
+  [data-aui-badge] {
+    @apply block relative;
+
+    &:not([data-aui-properties~="nopadding"]) {
+      @apply px-2;
+    }
+
+    & > [data-aui-badge-bg] {
+      @apply absolute inset-0 bg-sky-100 rounded-md;
+    }
+
+    &:not([data-aui-properties~="flat"]) > [data-aui-badge-bg] {
+      --aui-box-shadow-color: rgb(212 212 212 / 0.5);
+      box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+    }
+
+    &[data-aui-properties~="skew"] > [data-aui-badge-bg] {
+      @apply -skew-x-6;
+    }
+
+    &[data-aui-badge-color="white"] > [data-aui-badge-bg] {
+      @apply bg-white;
+    }
+
+    &[data-aui-badge-color="blue"] > [data-aui-badge-bg] {
+      @apply bg-sky-300;
+    }
+
+    &[data-aui-badge-color="yellow"] > [data-aui-badge-bg] {
+      @apply bg-yellow-200;
+    }
+
+    &[data-aui-badge-color="green"] > [data-aui-badge-bg] {
+      @apply bg-green-300;
+    }
+
+    &[data-aui-badge-color="red"] > [data-aui-badge-bg] {
+      @apply bg-red-300;
+    }
+
+    & > [data-aui-badge-text] {
+      @apply relative font-semibold text-xs text-slate-700;
+    }
+
+    &[data-aui-badge-color="blue"] > [data-aui-badge-text] {
+      @apply text-blue-900;
+    }
+
+    &[data-aui-badge-color="yellow"] > [data-aui-badge-text] {
+      @apply text-yellow-900;
+    }
+
+    &[data-aui-badge-color="green"] > [data-aui-badge-text] {
+      @apply text-green-900;
+    }
+
+    &[data-aui-badge-color="red"] > [data-aui-badge-text] {
+      @apply text-red-900;
+    }
+
+    &[data-aui-properties~="flat"] {
+      &:not([data-aui-properties~="noborder"]) > [data-aui-badge-bg] {
+        @apply border;
+      }
+
+      & > [data-aui-badge-bg] {
+        @apply bg-slate-400 border-slate-500;
+      }
+
+      &[data-aui-badge-color="white"] > [data-aui-badge-bg] {
+        @apply bg-white border-slate-200;
+      }
+
+      &[data-aui-badge-color="blue"] > [data-aui-badge-bg] {
+        @apply bg-sky-400 border-sky-600;
+      }
+
+      &[data-aui-badge-color="yellow"] > [data-aui-badge-bg] {
+        @apply bg-yellow-300 border-yellow-500;
+      }
+
+      &[data-aui-badge-color="green"] > [data-aui-badge-bg] {
+        @apply bg-green-400 border-green-600;
+      }
+
+      &[data-aui-badge-color="red"] > [data-aui-badge-bg] {
+        @apply bg-red-400 border-red-600;
+      }
+
+      & > [data-aui-badge-text] {
+        @apply text-white;
+      }
+
+      &[data-aui-badge-color="white"] > [data-aui-badge-text] {
+        @apply text-slate-700;
+      }
+    }
+  }
+
+  [data-aui-button] {
+    @apply inline-block relative;
+    transition-property: transform;
+    transition-duration: .15s;
+    transition-timing-function: var(--aui-cubic-bezier-ease-out);
+
+    &:not([data-aui-properties~="nopadding"]) {
+      @apply px-8 py-3;
+    }
+
+    & > [data-aui-button-bg] {
+      --aui-box-shadow-color: rgb(212 212 212 / 0.5);
+      @apply absolute inset-0 bg-sky-100 rounded-md;
+      box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+    }
+
+    &[data-aui-properties~="skew"] > [data-aui-button-bg] {
+      @apply -skew-x-6;
+    }
+
+    &[data-aui-button-color="white"] > [data-aui-button-bg] {
+      @apply bg-white;
+    }
+
+    &[data-aui-button-color="blue"] > [data-aui-button-bg] {
+      @apply bg-sky-300;
+    }
+
+    &[data-aui-button-color="yellow"] > [data-aui-button-bg] {
+      @apply bg-yellow-200;
+    }
+
+    &[data-aui-button-color="green"] > [data-aui-button-bg] {
+      @apply bg-green-300;
+    }
+
+    &[data-aui-button-color="red"] > [data-aui-button-bg] {
+      @apply bg-red-300;
+    }
+
+    & > [data-aui-button-text] {
+      @apply relative font-semibold text-slate-700;
+    }
+
+    &[data-aui-button-color="blue"] > [data-aui-button-text] {
+      @apply text-blue-900;
+    }
+
+    &[data-aui-button-color="yellow"] > [data-aui-button-text] {
+      @apply text-yellow-900;
+    }
+
+    &[data-aui-button-color="green"] > [data-aui-button-text] {
+      @apply text-green-900;
+    }
+
+    &[data-aui-button-color="red"] > [data-aui-button-text] {
+      @apply text-red-900;
+    }
+
+    &:active {
+      @apply scale-90;
+    }
+  }
+
+  [data-aui-card] {
+    --aui-box-shadow-color: rgb(212 212 212 / 0.5);
+    @apply border border-slate-200 rounded-md;
+    box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+
+    & > [data-aui-card-head] {
+      @apply px-4 py-3 border-b border-b-slate-200;
+    }
+
+    &:not([data-aui-properties~="nocardbody"]) > [data-aui-card-body] {
+      @apply p-4 py-3;
+    }
+
+    & > [data-aui-card-footer] {
+      @apply px-4 py-3;
+    }
+  }
+
+  &[data-aui-dialog] {
+    @apply fixed top-0 left-0;
+
+    & > [data-aui-dialog-instance] {
+      @apply fixed inset-0 flex justify-center items-center;
+
+      & > [data-aui-dialog-backdrop] {
+        @apply fixed inset-0 inline-flex items-center justify-center;
+        background-color: var(--aui-dialog-backdrop-color);
+        animation-name: aui-dialog-backdrop-enter-anim;
+        animation-fill-mode: forwards;
+        animation-timing-function: var(--aui-cubic-bezier-ease-out);
+        animation-duration: .2s;
+      }
+
+      & > [data-aui-dialog-card] {
+        @apply relative bg-white rounded-md overflow-hidden;
+        box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+        min-width: var(--aui-dialog-min-width);
+        animation-name: aui-dialog-card-enter-anim;
+        animation-fill-mode: forwards;
+        animation-timing-function: var(--aui-cubic-bezier-ease-out);
+        animation-duration: .2s;
+
+        & > [data-aui-dialog-head] {
+          @apply relative flex justify-center bg-sky-50 shadow-sm shadow-slate-300;
+
+          & > [data-aui-dialog-title] {
+            @apply mt-1 font-bold text-xl leading-8 text-slate-700 border-b-2 border-yellow-200;
+          }
+          & > [data-aui-dialog-close-button] {
+            @apply absolute top-0 right-0 m-2;
+          }
+        }
+      }
+    }
+  }
+
+  [data-aui-dropdown] {
+    @apply relative;
+
+    &[data-aui-dropdown-open="false"] > [data-aui-dropdown-popup] {
+      @apply hidden;
+    }
+
+    &[data-aui-dropdown-open="true"] > [data-aui-dropdown-popup] {
+      @apply relative;
+
+      & > [data-aui-dropdown-backdrop] {
+        @apply fixed inset-0 cursor-default;
+      }
+
+      & > [data-aui-dropdown-item-list] {
+        --aui-box-shadow-color: rgb(212 212 212 / 0.5);
+        @apply absolute w-52 p-1 mt-2 flex flex-col gap-y-1 bg-white border border-slate-200 overflow-hidden rounded-md;
+        box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+
+        & > [data-aui-dropdown-item] {
+          @apply block w-full hover:bg-slate-100 rounded-md;
+        }
+
+        & > button[data-aui-dropdown-item] {
+          @apply px-1 text-left;
+        }
+
+        & > a[data-aui-dropdown-item] {
+          @apply block w-full px-1 cursor-pointer;
+        }
+
+        & > [data-aui-dropdown-item-divider] {
+          @apply block -mx-1 border-b border-b-slate-200;
+        }
+      }
+    }
+  }
+
+  /**
+   * These form components is not groupped into form specific attribute like "data-aui-forms"
+   * because these form components should be able to exist outside of specific attribute like that.
+   */
+
+  [data-aui-input-labelled]:not(:is([data-aui-input-radio], [data-aui-input-checkbox])) {
+    & > [data-aui-input-label] {
+      @apply block mb-1;
+    }
+  }
+
+  [data-aui-input-text],
+  [data-aui-input-textarea],
+  [data-aui-input-select] {
+    & > [data-aui-input-border] {
+      @apply border-2 border-slate-200 overflow-hidden rounded-md transition-colors;
+
+      &:focus-within {
+        @apply border-sky-400;
+      }
+    }
+
+    input, textarea, select {
+      @apply bg-white;
+    }
+  }
+
+  [data-aui-input-text] {
+    & > [data-aui-input-border] {
+      & > input {
+        @apply px-3 py-2 w-full block;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  [data-aui-input-textarea] {
+    & > [data-aui-input-border] {
+      & > textarea {
+        @apply px-3 py-2 w-full block;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  [data-aui-input-select] {
+    & > [data-aui-input-border] {
+      @apply relative;
+
+      & > select {
+        @apply px-3 py-2 w-full block cursor-pointer appearance-none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      
+      & > select:not(:is([multiple], [size])) + i {
+        @apply absolute block w-4 h-4 top-1/2 right-1 -translate-x-1/2 -translate-y-1/2 pointer-events-none;
+        content: var(--aui-svg-chevron-down);
+      }
+    }
+  }
+
+  [data-aui-input-radio] {
+    @apply inline-flex items-center gap-x-2 cursor-pointer;
+  }
+
+  [data-aui-input-checkbox] {
+    @apply inline-flex items-center gap-x-2 cursor-pointer;
+  }
+
+  [data-aui-input-file] {
+    & > [data-aui-input-border] {
+      @apply flex items-center gap-x-2 border-2 border-slate-200 overflow-hidden rounded-md transition-colors;
+    }
+    & > input[type="file"] {
+      display: none;
+    }
+  }
+  
+  [data-aui-sidenavs] {
+    @apply grid overflow-hidden;
+    grid-template: "side content" 1fr / minmax(220px, auto) 1fr;
+
+    &[data-aui-properties~="border"] {
+      @apply border border-slate-200 rounded-md;
+    }
+
+    &[data-aui-properties~="shadow"] {
+      --aui-box-shadow-color: rgb(212 212 212 / 0.5);
+      box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+    }
+
+    & > [data-aui-sidenavs-buttons] {
+      @apply bg-sky-200;
+      grid-area: side;
+
+      & > [data-aui-sidenavs-button] {
+        @apply block w-full px-6 py-4 font-bold text-lg bg-transparent;
+
+        &[data-aui-sidenavs-button="active"] {
+          @apply bg-white;
+        }
+
+        &[data-aui-sidenavs-button="inactive"] {
+          @apply text-sky-800 text-opacity-80;
+        }
+
+        &:not(:is(:first-child, [data-aui-sidenavs-button="active"], [data-aui-sidenavs-button="active"] + [data-aui-sidenavs-button])) {
+          @apply relative;
+
+          &::before {
+            @apply absolute block top-0 h-[2px];
+            left: var(--aui-sidenav-divider-cut-size);
+            right: var(--aui-sidenav-divider-cut-size);
+            background-color: var(--aui-color-sky-350);
+            content: ' ';
+          }
+        }
+      }
+    }
+
+    & > [data-aui-sidenavs-contents] {
+      grid-area: content;
+
+      & > [data-aui-sidenavs-content] {
+        &[data-aui-sidenavs-content="inactive"] {
+          @apply hidden;
+        }
+      }
+    }
+  }
+  
+  [data-aui-tabs] {
+    &:not([data-aui-properties~="noborder"]) {
+      @apply border border-slate-200 rounded-md;
+    }
+
+    &:not([data-aui-properties~="noshadow"]) {
+      --aui-box-shadow-color: rgba(0 0 0 / 0.1);
+      box-shadow: 0 4px 2px -1px var(--aui-box-shadow-color), 0 6px 4px -2px var(--aui-box-shadow-color);
+    }
+
+    & > [data-aui-tabs-buttons] {
+      @apply flex pt-3 px-3 bg-sky-200;
+
+      & > [data-aui-tabs-button] {
+        @apply block w-full py-4 font-bold text-lg bg-transparent;
+
+        &[data-aui-tabs-button="active"] {
+          @apply bg-white rounded-t-md;
+        }
+
+        &[data-aui-tabs-button="inactive"] {
+          @apply text-sky-800 text-opacity-80;
+        }
+
+        &:not(:is(:first-child, [data-aui-tabs-button="active"], [data-aui-tabs-button="active"] + [data-aui-tabs-button])) {
+          @apply relative;
+
+          &::before {
+            @apply absolute block w-[2px];
+            top: var(--aui-tab-divider-cut-size);
+            bottom: calc(var(--aui-tab-divider-cut-size) + 12px);
+            background-color: var(--aui-color-sky-350);
+            content: ' ';
+          }
+        }
+      }
+    }
+
+    & > [data-aui-tabs-contents] {
+      & > [data-aui-tabs-content] {
+        &[data-aui-tabs-content="inactive"] {
+          @apply hidden;
+        }
+      }
+    }
+  }
+
+  @keyframes aui-dialog-backdrop-enter-anim {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes aui-dialog-card-enter-anim {
+    from {
+      opacity: 0;
+      transform: translateY(300px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+}
